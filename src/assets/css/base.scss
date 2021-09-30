@@ -1,0 +1,13 @@
+$font-color: #666;
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+#app {
+    width: 100%;
+    height: 100%;
+    color: $font-color;
+}
