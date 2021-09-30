@@ -1,12 +1,13 @@
+import router from "@/router"
 import { accountLogin, getUserInfoById, getUserMenuByRoleId } from "@/api/login/login"
 import localCache from "@/utils/cache"
 const login = {
     namespaced: true,
     state() {
         return {
-            token: "",
-            userInfo: {},
-            userMenus: []
+            token: localCache.getCache("token") ? localCache.getCache("token") : "",
+            userInfo: localCache.getCache("userInfo") ? localCache.getCache("userInfo") : {},
+            userMenus: localCache.getCache("userMenus") ? localCache.getCache("userMenus") : []
         }
     },
     getters: {},
@@ -51,7 +52,7 @@ const login = {
                 commit("changeUserMenus", userMenus)
                 localCache.setCache("userMenus", userMenus)
             }
-            this.$router.push("/main")
+            router.push("/main")
         }
     }
 }
