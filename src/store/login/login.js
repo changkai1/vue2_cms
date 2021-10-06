@@ -1,13 +1,14 @@
 import router from "@/router"
 import { accountLogin, getUserInfoById, getUserMenuByRoleId } from "@/api/login/login"
 import localCache from "@/utils/cache"
+import { mapMenusToRoutes } from "@/utils/mapMenus"
 const login = {
     namespaced: true,
     state() {
         return {
-            token: localCache.getCache("token") ? localCache.getCache("token") : "",
-            userInfo: localCache.getCache("userInfo") ? localCache.getCache("userInfo") : {},
-            userMenus: localCache.getCache("userMenus") ? localCache.getCache("userMenus") : []
+            token: "",
+            userInfo: {},
+            userMenus: []
         }
     },
     getters: {},
@@ -20,6 +21,10 @@ const login = {
         },
         changeUserMenus(state, userMenus) {
             state.userMenus = userMenus
+            const routes = mapMenusToRoutes(userMenus)
+            routes.forEach((route) => {
+                router.addRoute("main", route)
+            })
         }
     },
     actions: {
@@ -53,6 +58,20 @@ const login = {
                 localCache.setCache("userMenus", userMenus)
             }
             router.push("/main")
+        },
+        loadLocalLogin({ commit }) {
+            const token = localCache.getCache("token")
+            if (token) {
+                commit("changeToken", token)
+            }
+            const userInfo = localCache.getCache("userInfo")
+            if (userInfo) {
+                commit("changeUserInfo", userInfo)
+            }
+            const userMenus = localCache.getCache("userMenus")
+            if (userMenus) {
+                commit("changeUserMenus", userMenus)
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ import Vuex from "vuex"
 import login from "./login/login"
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state: {},
     mutations: {},
     actions: {},
@@ -11,3 +11,7 @@ export default new Vuex.Store({
         login
     }
 })
+export function setupStore() {
+    store.dispatch("login/loadLocalLogin")
+}
+export default store

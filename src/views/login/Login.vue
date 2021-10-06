@@ -25,7 +25,7 @@
 import LoginAccount from "./component/LoginAccount"
 import LoginPhone from "./component/LoginPhone"
 export default {
-    name: "Login",
+    name: "login",
     components: {
         LoginAccount,
         LoginPhone

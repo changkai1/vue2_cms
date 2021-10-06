@@ -5,34 +5,40 @@
             <span class="title">Vue2+JS</span>
         </div>
         <el-menu
-            default-active="2"
             class="el-menu-vertical"
-            @open="handleOpen"
-            @close="handleClose"
+            default-active="2"
             background-color="#0c2135"
             text-color="#b7bdc3"
             active-text-color="#0a60bd">
-            <el-submenu index="1">
-                <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>导航一</span>
+            <template v-for="item in userMenus">
+                <!-- 一级菜单 -->
+                <template v-if="item.type == 2">
+                    <el-menu-item :index="item.id + ''" :key="item.id">
+                        <i v-if="item.icon" :class="item.icon"></i>
+                        <span>{{ item.name }}</span>
+                    </el-menu-item>
                 </template>
-                <el-menu-item-group>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="1-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                </el-submenu>
-            </el-submenu>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
-            </el-menu-item>
+                <!-- 二级菜单 -->
+                <template v-else-if="item.type == 1">
+                    <!-- 二级可展开的标题 -->
+                    <el-submenu :index="item.id + ''" :key="item.id">
+                        <template slot="title">
+                            <i v-if="item.icon" :class="item.icon"></i>
+                            <span>{{ item.name }}</span>
+                        </template>
+                        <!-- 二级下拉菜单 -->
+                        <template v-for="subitem in item.children">
+                            <el-menu-item
+                                :index="subitem.id + ''"
+                                :key="subitem.id"
+                                @click="handleMenuItemClick(subitem)">
+                                <i v-if="item.icon" :class="item.icon"></i>
+                                <span>{{ subitem.name }}</span>
+                            </el-menu-item>
+                        </template>
+                    </el-submenu>
+                </template>
+            </template>
         </el-menu>
     </div>
 </template>
@@ -44,11 +50,18 @@ export default {
         return {}
     },
     methods: {
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath)
-        },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath)
+        handleMenuItemClick(subitem) {
+            console.log("subitem", subitem)
+            let url = subitem.url ? subitem.url : "/notFound"
+            console.log(url)
+            this.$router.push({
+                path: url
+            })
+        }
+    },
+    computed: {
+        userMenus() {
+            return this.$store.state.login.userMenus
         }
     }
 }

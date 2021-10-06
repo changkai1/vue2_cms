@@ -6,10 +6,13 @@ import "normalize.css"
 import "@/assets/css/index.scss"
 import router from "./router"
 import store from "./store"
+import { setupStore } from "./store"
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
-
+Vue.use(store)
+setupStore()
+Vue.use(router)
 // 获取环境变量
 // console.log(process.env.VUE_APP_BASE_URL)
 // console.log(process.env.VUE_APP_BASE_NAME)

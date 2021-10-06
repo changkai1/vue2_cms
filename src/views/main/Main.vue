@@ -7,7 +7,9 @@
             <el-container class="page">
                 <el-header class="page-header">Header</el-header>
                 <el-main class="page-content">
-                    <div class="page-info">Main</div>
+                    <div class="page-info">
+                        <router-view></router-view>
+                    </div>
                 </el-main>
             </el-container>
         </el-container>
@@ -17,7 +19,7 @@
 <script>
 import NavMenu from "./components/NavMenu"
 export default {
-    name: "Main",
+    name: "main",
     components: {
         NavMenu
     },

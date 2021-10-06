@@ -6,32 +6,38 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: "/",
-        redirect: "/login"
+        redirect: "/main"
     },
     {
         path: "/login",
-        name: "Login",
-        component: () => import(/* webpackChunkName: "login" */ "@/views/login/Login.vue")
+        name: "login",
+        component: () => import("@/views/login/login.vue")
     },
     {
         path: "/main",
-        name: "Main",
-        component: () => import("@/views/main/Main.vue")
+        name: "main",
+        component: () => import("@/views/main/main.vue")
     },
+    // {
+    //     path: "/:pathMatch(.*)*",
+    //     name: "notFound",
+    //     component: () => import("@/views/notFound/notFound.vue")
+    // },
     {
-        path: "/:pathMatch(.*)*",
-        name: "NotFound",
-        component: () => import("@/views/notFound/NotFound.vue")
+        path: "*",
+        name: "notFound",
+        component: () => import("@/views/notFound/notFound.vue")
     }
 ]
 
 const router = new VueRouter({
-    mode: "history",
-    routes
+    routes,
+    mode: "history"
 })
 
 // 导航守卫
 router.beforeEach((to, from, next) => {
+    console.log("to", to)
     if (to.path !== "/login") {
         const token = localCache.getCache("token")
         if (!token) {
