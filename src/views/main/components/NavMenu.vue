@@ -6,7 +6,7 @@
         </div>
         <el-menu
             class="el-menu-vertical"
-            default-active="2"
+            :default-active="defaultValue"
             background-color="#0c2135"
             text-color="#b7bdc3"
             active-text-color="#0a60bd">
@@ -44,10 +44,13 @@
 </template>
 
 <script>
+import { pathMapToMenu } from "@/utils/mapMenus"
 export default {
     name: "nav-menu",
     data() {
-        return {}
+        return {
+            defaultValue: ""
+        }
     },
     methods: {
         handleMenuItemClick(subitem) {
@@ -63,6 +66,11 @@ export default {
         userMenus() {
             return this.$store.state.login.userMenus
         }
+    },
+    created() {
+        let currentPath = this.$route.path
+        let menu = pathMapToMenu(this.userMenus, currentPath)
+        this.defaultValue = menu.id + ""
     }
 }
 </script>

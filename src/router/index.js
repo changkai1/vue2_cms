@@ -16,13 +16,8 @@ const routes = [
     {
         path: "/main",
         name: "main",
-        component: () => import("@/views/main/main.vue")
+        component: () => import("@/views/main/Main.vue")
     },
-    // {
-    //     path: "/:pathMatch(.*)*",
-    //     name: "notFound",
-    //     component: () => import("@/views/notFound/notFound.vue")
-    // },
     {
         path: "*",
         name: "notFound",
@@ -37,7 +32,6 @@ const router = new VueRouter({
 
 // 导航守卫
 router.beforeEach((to, from, next) => {
-    console.log("to", to)
     if (to.path !== "/login") {
         const token = localCache.getCache("token")
         if (!token) {

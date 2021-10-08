@@ -27,6 +27,9 @@ export default {
             }
         }
     },
+    mounted() {
+        this.getUserInfo()
+    },
     methods: {
         // 账号密码登录逻辑
         loginAccount(checked) {
@@ -43,6 +46,21 @@ export default {
                     this.$store.dispatch("login/accountLoginAction", { ...this.formData })
                 }
             })
+        },
+        // 回填用户名密码
+        getUserInfo() {
+            let name = localCache.getCache("name")
+            let password = localCache.getCache("password")
+            if (name) {
+                this.formData.name = name
+            } else {
+                this.formData.name = ""
+            }
+            if (password) {
+                this.formData.password = password
+            } else {
+                this.formData.password = ""
+            }
         }
     }
 }

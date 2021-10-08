@@ -1,3 +1,4 @@
+// 动态获取匹配的路由
 export function mapMenusToRoutes(userMenus) {
     let routes = []
     let allRoutes = []
@@ -7,7 +8,7 @@ export function mapMenusToRoutes(userMenus) {
         const route = require("../router/main" + key.split(".")[1])
         allRoutes.push(route.default)
     })
-    console.log("allRoutes", allRoutes)
+    // console.log("allRoutes", allRoutes)
     const _recurseGetRoute = (menus) => {
         for (const menu of menus) {
             if (menu.type === 2) {
@@ -20,4 +21,19 @@ export function mapMenusToRoutes(userMenus) {
     }
     _recurseGetRoute(userMenus)
     return routes
+}
+
+// 获取当前菜单的default-active
+export function pathMapToMenu(userMenus, currentPath) {
+    for (const menu of userMenus) {
+        if (menu.type === 1) {
+            let menuChildren = menu.children ? menu.children : []
+            const findMenu = pathMapToMenu(menuChildren, currentPath)
+            if (findMenu) {
+                return findMenu
+            }
+        } else if (menu.type === 2 && menu.url === currentPath) {
+            return menu
+        }
+    }
 }
