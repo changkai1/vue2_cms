@@ -1,11 +1,13 @@
 <template>
     <div class="main">
         <el-container class="main-content">
-            <el-aside width="210px">
-                <nav-menu></nav-menu>
+            <el-aside :width="isCollapse ? '58px' : '210px'">
+                <nav-menu :isCollapse="isCollapse"></nav-menu>
             </el-aside>
             <el-container class="page">
-                <el-header class="page-header">Header</el-header>
+                <el-header class="page-header">
+                    <nav-header @foldChange="handleFoldChange"></nav-header>
+                </el-header>
                 <el-main class="page-content">
                     <div class="page-info">
                         <router-view></router-view>
@@ -17,14 +19,23 @@
 </template>
 
 <script>
-import NavMenu from "./components/NavMenu"
+import NavMenu from "./components/navMenu"
+import NavHeader from "./components/navHeader"
 export default {
     name: "Main",
     components: {
-        NavMenu
+        NavMenu,
+        NavHeader
     },
     data() {
-        return {}
+        return {
+            isCollapse: false
+        }
+    },
+    methods: {
+        handleFoldChange(val) {
+            this.isCollapse = val
+        }
     }
 }
 </script>
