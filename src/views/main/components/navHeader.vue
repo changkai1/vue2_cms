@@ -3,18 +3,20 @@
         <i class="fold-menu" :class="isFold ? 'el-icon-s-fold' : 'el-icon-s-unfold'" @click="handleFoldClick"></i>
         <div class="content">
             <bread-crumb :breadCrumbs="breadCrumbs"></bread-crumb>
-            <div>123</div>
+            <user-info></user-info>
         </div>
     </div>
 </template>
 
 <script>
 import BreadCrumb from "./breadCrumb"
+import UserInfo from "./userInfo"
 import { pathMapBreadCrumbs } from "@/utils/mapMenus"
 export default {
     name: "navHeader",
     components: {
-        BreadCrumb
+        BreadCrumb,
+        UserInfo
     },
     data() {
         return {

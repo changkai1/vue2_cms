@@ -2,7 +2,7 @@
     <div class="bread-crumb">
         <el-breadcrumb separator="/">
             <template v-for="item in breadCrumbs">
-                <!-- <el-breadcrumb-item :key="item.id" :to="{ path: item.url }">{{ item.name }}</el-breadcrumb-item> -->
+                <!-- <el-breadcrumb-item :key="item.id" :to="{ path: item.path }">{{ item.name }}</el-breadcrumb-item> -->
                 <el-breadcrumb-item :key="item.id">{{ item.name }}</el-breadcrumb-item>
             </template>
         </el-breadcrumb>
@@ -14,7 +14,8 @@ export default {
     name: "breadCrumb",
     props: {
         breadCrumbs: {
-            type: Array
+            type: Array,
+            default: () => []
         }
     },
     data() {
