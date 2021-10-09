@@ -1,3 +1,5 @@
+// 获取第一个菜单
+let firstMenu = null
 // 动态获取匹配的路由
 export function mapMenusToRoutes(userMenus) {
     let routes = []
@@ -13,7 +15,12 @@ export function mapMenusToRoutes(userMenus) {
         for (const menu of menus) {
             if (menu.type === 2) {
                 const route = allRoutes.find((route) => route.path === menu.url)
-                if (route) routes.push(route)
+                if (route) {
+                    routes.push(route)
+                }
+                if (!firstMenu) {
+                    firstMenu = menu
+                }
             } else {
                 _recurseGetRoute(menu.children)
             }
@@ -37,3 +44,24 @@ export function pathMapToMenu(userMenus, currentPath) {
         }
     }
 }
+
+// 获取面包屑数据
+export function pathMapBreadCrumbs(userMenus, currentPath) {
+    let breadCrumbs = []
+    for (const menu of userMenus) {
+        if (menu.type === 1) {
+            let menuChildren = menu.children ? menu.children : []
+            const findMenu = pathMapToMenu(menuChildren, currentPath)
+            if (findMenu) {
+                breadCrumbs.push({ name: menu.name, path: menu.url })
+                breadCrumbs.push({ name: findMenu.name, path: findMenu.url })
+            }
+        } else if (menu.type === 2 && menu.url === currentPath) {
+            return menu
+        }
+    }
+    return breadCrumbs
+}
+
+// 导出第一个菜单
+export { firstMenu }

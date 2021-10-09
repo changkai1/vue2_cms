@@ -1,6 +1,7 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import localCache from "@/utils/cache"
+import { firstMenu } from "@/utils/mapMenus"
 Vue.use(VueRouter)
 
 const routes = [
@@ -37,6 +38,9 @@ router.beforeEach((to, from, next) => {
         if (!token) {
             router.replace("/login")
         }
+    }
+    if (to.path == "/main") {
+        next(firstMenu.url)
     }
     next()
 })

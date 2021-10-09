@@ -8,6 +8,7 @@
             class="el-menu-vertical"
             :collapse="isCollapse"
             :default-active="defaultValue"
+            :default-openeds="openeds"
             background-color="#0c2135"
             text-color="#b7bdc3"
             active-text-color="#0a60bd">
@@ -55,7 +56,8 @@ export default {
     },
     data() {
         return {
-            defaultValue: ""
+            defaultValue: "",
+            openeds: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
         }
     },
     methods: {
