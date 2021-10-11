@@ -56,10 +56,10 @@ export default {
 
 .page-content {
     height: calc(100% - 48px);
-
+    padding: 10px;
     .page-info {
-        background-color: #fff;
-        border-radius: 5px;
+        // background-color: #fff;
+        // border-radius: 2px;
     }
 }
 
@@ -93,7 +93,7 @@ export default {
 
 .el-main {
     color: #333;
-    text-align: center;
+    text-align: left;
     background-color: #f0f2f5;
 }
 </style>
