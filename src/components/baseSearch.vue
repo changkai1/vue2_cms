@@ -4,10 +4,9 @@
             ref="refBaseSearch"
             :inline="true"
             :model="queryForm"
-            class="demo-form-inline"
-            size="small"
-            label-width="80px"
-            label-position="right">
+            :size="size"
+            :label-width="labelWidth"
+            :label-position="labelPosition">
             <slot name="formItem"></slot>
             <div class="foot-btn">
                 <el-button size="small" @click="resetData">重置</el-button>
@@ -18,9 +17,22 @@
 </template>
 
 <script>
+import cloneDeep from "lodash.clonedeep"
 export default {
     name: "baseSearch",
     props: {
+        size: {
+            type: String,
+            default: "small"
+        },
+        labelPosition: {
+            type: String,
+            default: "right"
+        },
+        labelWidth: {
+            type: String,
+            default: "80px"
+        },
         queryForm: {
             type: Object,
             require: true
@@ -31,8 +43,14 @@ export default {
     },
     methods: {
         // 重置
-        resetData() {},
-        // 搜索
+        resetData() {
+            let queryForm = cloneDeep(this.queryForm)
+            for (let key in queryForm) {
+                queryForm[key] = ""
+            }
+            this.$emit("resetField", queryForm)
+        },
+        // 查询
         searchData() {}
     }
 }

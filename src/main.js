@@ -7,12 +7,14 @@ import "@/assets/css/index.scss"
 import router from "./router"
 import store from "./store"
 import { setupStore } from "./store"
+import utils from "@/utils/utils"
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.use(store)
 setupStore()
 Vue.use(router)
+Vue.prototype.$utils = utils
 // 获取环境变量
 // console.log(process.env.VUE_APP_BASE_URL)
 // console.log(process.env.VUE_APP_BASE_NAME)
