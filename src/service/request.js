@@ -21,7 +21,8 @@ service.interceptors.request.use(
         if (config.options && config.options.showLoading) {
             loadingInstance = Loading.service({
                 lock: true,
-                text: "加载中"
+                text: "加载中",
+                target: document.querySelector(".page-target")
             })
         }
         return config

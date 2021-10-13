@@ -51,7 +51,10 @@ export default {
             this.$emit("resetField", queryForm)
         },
         // 查询
-        searchData() {}
+        searchData() {
+            this.$emit("resetPageData")
+            this.$emit("queryList")
+        }
     }
 }
 </script>

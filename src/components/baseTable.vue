@@ -12,7 +12,7 @@
             </div>
         </div>
         <!-- 列表 -->
-        <el-table :data="dataList" border size="mini" stripe style="width: 100%">
+        <el-table :data="dataList" border size="mini" header-row-class-name="table-header-row" height="200">
             <el-table-column v-if="isShowSelection" type="selection" width="80" align="center"></el-table-column>
             <el-table-column
                 v-if="isShowSerialNum"

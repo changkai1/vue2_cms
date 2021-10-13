@@ -4,7 +4,7 @@
             <el-aside :width="isCollapse ? '58px' : '210px'">
                 <nav-menu :isCollapse="isCollapse"></nav-menu>
             </el-aside>
-            <el-container class="page">
+            <el-container class="page page-target">
                 <el-header class="page-header">
                     <nav-header @foldChange="handleFoldChange"></nav-header>
                 </el-header>

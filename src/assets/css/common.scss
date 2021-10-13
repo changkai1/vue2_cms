@@ -4,3 +4,21 @@
 .base-table .el-button {
     margin-bottom: 5px;
 }
+// 表头字体
+.table-header-row {
+    font-size: 14px;
+}
+// table表格表头默认背景色
+.el-table__header th {
+    background-color: #f5f7fa !important;
+}
+// .el-table__fixed {
+//     height: calc(100% - 20px) !important;
+// }
+// .el-table__fixed-right {
+//     height: calc(100% - 20px) !important;
+// }
+// .el-table__fixed-right::before,
+// .el-table__fixed::before {
+//     background-color: unset !important;
+// }
