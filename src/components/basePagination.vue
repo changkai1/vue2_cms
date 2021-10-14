@@ -40,13 +40,11 @@ export default {
         handleSizeChange(pageSize) {
             this.$emit("handleSizeChange", pageSize)
             this.$emit("queryList")
-            console.log("pageSize", pageSize)
         },
         // 当前页
         handleCurrentChange(currentPage) {
             this.$emit("handleCurrentChange", currentPage)
             this.$emit("queryList")
-            console.log("currentPage", currentPage)
         }
     }
 }

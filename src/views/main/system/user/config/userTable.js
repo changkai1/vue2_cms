@@ -1,6 +1,7 @@
 const tableOptions = {
     title: "用户列表",
     isShowSelection: true,
+    isShowSerialNum: true,
     propList: [
         {
             prop: "name",
@@ -46,6 +47,12 @@ const tableOptions = {
             showOverflowTooltip: true,
             align: "center",
             slotName: "updateAt"
+        },
+        {
+            label: "操作",
+            minWidth: "150",
+            align: "center",
+            slotName: "handler"
         }
     ]
 }

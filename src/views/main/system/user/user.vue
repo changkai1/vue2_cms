@@ -7,7 +7,7 @@
                 @resetPageData="resetPageData"
                 @queryList="queryList">
                 <template v-slot:formItem>
-                    <el-form-item label="姓名">
+                    <el-form-item label="用户名">
                         <el-input v-model.trim="queryForm.name" placeholder="请输入" clearable></el-input>
                     </el-form-item>
                     <el-form-item label="手机号码">
@@ -28,11 +28,24 @@
                         {{ scope.row.enable ? "启用" : "禁用" }}
                     </el-link>
                 </template>
+                <!-- 创建时间 -->
                 <template slot="createAt" slot-scope="scope">
                     <span>{{ $utils.formatUtcTime(scope.row.createAt) }}</span>
                 </template>
+                <!-- 更新时间 -->
                 <template slot="updateAt" slot-scope="scope">
                     <span>{{ $utils.formatUtcTime(scope.row.updateAt) }}</span>
+                </template>
+                <!-- 操作列 -->
+                <template slot="handler" slot-scope="scope">
+                    <div class="handler">
+                        <el-button type="text" icon="el-icon-edit" size="mini" @click="handleEditClick(scope.row)">
+                            编辑
+                        </el-button>
+                        <el-button type="text" icon="el-icon-delete" size="mini" @click="handleDeleteClick(scope.row)">
+                            删除
+                        </el-button>
+                    </div>
                 </template>
             </base-table>
             <base-pagination
@@ -91,6 +104,14 @@ export default {
                 this.dataList = res.data.list
                 this.pageData.totalCount = res.data.totalCount
             })
+        },
+        // 编辑
+        handleEditClick(row) {
+            console.log(row)
+        },
+        // 删除
+        handleDeleteClick(row) {
+            console.log(row)
         },
         // 重置
         resetField(obj) {
