@@ -15,10 +15,11 @@ Vue.use(store)
 setupStore()
 Vue.use(router)
 Vue.prototype.$utils = utils
+
 // 获取环境变量
-// console.log(process.env.VUE_APP_BASE_URL)
-// console.log(process.env.VUE_APP_BASE_NAME)
-// console.log(process.env.NODE_ENV)
+console.log(process.env.VUE_APP_BASE_URL)
+console.log(process.env.VUE_APP_BASE_NAME)
+console.log(process.env.NODE_ENV)
 
 new Vue({
     router,

@@ -5,6 +5,9 @@
     "scripts": {
         "serve": "vue-cli-service serve --open",
         "build": "vue-cli-service build",
+        "build:dev": "vue-cli-service build --mode development",
+        "build:test": "vue-cli-service build --mode test",
+        "build:uat": "vue-cli-service build --mode uat",
         "lint": "vue-cli-service lint",
         "prettier": "prettier --write ."
     },
