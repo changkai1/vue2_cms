@@ -17,9 +17,10 @@ Vue.use(router)
 Vue.prototype.$utils = utils
 
 // 获取环境变量
-console.log(process.env.VUE_APP_BASE_URL)
-console.log(process.env.VUE_APP_BASE_NAME)
-console.log(process.env.NODE_ENV)
+console.log("BASE_URL", process.env.VUE_APP_BASE_URL)
+console.log("BASE_NAME", process.env.VUE_APP_BASE_NAME)
+console.log("NODE_ENV", process.env.NODE_ENV)
+console.log("ENV", process.env)
 
 new Vue({
     router,

@@ -1,5 +1,12 @@
+const publicPathMap = {
+    development: "/",
+    test: "./",
+    uat: "./",
+    production: "./"
+}
+const publicPath = publicPathMap[process.env.VUE_APP_BASE_NAME]
 module.exports = {
-    publicPath: "./",
+    publicPath: publicPath,
     // outputDir: "./dist",
     outputDir: process.env.VUE_APP_BASE_NAME,
     configureWebpack: {

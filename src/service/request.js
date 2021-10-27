@@ -1,10 +1,10 @@
 import axios from "axios"
-import BASE_URL from "./config"
+import { API_BASE_URL } from "./config"
 import { Loading } from "element-ui"
 import { Message } from "element-ui"
 import localCache from "@/utils/cache"
 const service = axios.create({
-    baseURL: BASE_URL,
+    baseURL: API_BASE_URL,
     timeout: 10 * 1000
 })
 let loadingInstance
@@ -12,7 +12,7 @@ let loadingInstance
 service.interceptors.request.use(
     // 请求发送成功执行的函数
     (config) => {
-        // console.log("request-config", config)
+        console.log("request-config", config)
         // 添加token拦截
         const token = localCache.getCache("token")
         if (token) {
