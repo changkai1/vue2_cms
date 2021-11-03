@@ -52,12 +52,12 @@ const tableOptions = {
             align: "center",
             slotName: "updateTime"
         }
-        // {
-        //     label: "操作",
-        //     minWidth: "150",
-        //     align: "center",
-        //     slotName: "handler"
-        // }
-    ]
+    ],
+    childrenProps: {
+        rowKey: "id",
+        treeProp: {
+            children: "children"
+        }
+    }
 }
 export default tableOptions

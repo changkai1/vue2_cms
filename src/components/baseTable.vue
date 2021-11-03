@@ -12,7 +12,13 @@
             </div>
         </div>
         <!-- 列表 -->
-        <el-table :data="dataList" border size="mini" header-row-class-name="table-header-row" max-height="510">
+        <el-table
+            :data="dataList"
+            border
+            size="mini"
+            header-row-class-name="table-header-row"
+            max-height="510"
+            v-bind="childrenProps">
             <el-table-column v-if="isShowSelection" type="selection" width="80" align="center"></el-table-column>
             <el-table-column
                 v-if="isShowSerialNum"
@@ -23,9 +29,9 @@
             <template v-for="item in propList">
                 <el-table-column :key="item.prop" v-bind="item">
                     <template slot-scope="scope">
-                        <div v-if="!item.slotName">
+                        <span v-if="!item.slotName">
                             {{ scope.row[item.prop] }}
-                        </div>
+                        </span>
                         <!-- 具名插槽 -->
                         <slot v-else :name="item.slotName" :row="scope.row"></slot>
                     </template>
@@ -62,6 +68,11 @@ export default {
         propList: {
             type: Array,
             required: true
+        },
+        // 列表展开行配置
+        childrenProps: {
+            type: Object,
+            default: () => {}
         }
     },
     data() {

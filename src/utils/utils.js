@@ -5,6 +5,6 @@ dayjs.extend(utc)
 let utils = {}
 // utc时间格式化
 utils.formatUtcTime = function (utcTime, format = "YYYY-MM-DD HH:mm:ss") {
-    return dayjs.utc(utcTime).format(format)
+    return dayjs.utc(utcTime).utcOffset(8).format(format)
 }
 export default utils
