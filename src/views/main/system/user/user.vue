@@ -57,24 +57,7 @@
                 @queryList="queryList">
             </base-pagination>
         </el-card>
-        <!-- <base-dialog-form
-            @resetDialogField="resetDialogField"
-            :dialogForm="dialogForm"
-            :dialogVisible.sync="dialogVisible"
-            v-bind="dialogConfig">
-            <template v-slot:baseDialog>
-                <el-form-item label="用户名">
-                    <el-input v-model.trim="dialogForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="真实姓名">
-                    <el-input v-model.trim="dialogForm.realName"></el-input>
-                </el-form-item>
-                <el-form-item label="手机号">
-                    <el-input v-model.trim="dialogForm.phone"></el-input>
-                </el-form-item>
-            </template>
-        </base-dialog-form> -->
-        <user-dialog ref="userDialogRef" :userDialog.sync="userDialog" @queryList="queryList"></user-dialog>
+        <user-dialog ref="userDialogRef" :dialogVisible.sync="userDialogVisible" @queryList="queryList"> </user-dialog>
     </div>
 </template>
 
@@ -107,7 +90,7 @@ export default {
                 totalCount: 0,
                 offset: 0
             },
-            userDialog: false
+            userDialogVisible: false
         }
     },
     created() {
@@ -156,8 +139,7 @@ export default {
         },
         // 新增
         addData() {
-            // this.$refs.userDialogRef.dialogVisibleShow()
-            this.userDialog = true
+            this.userDialogVisible = true
         }
     }
 }

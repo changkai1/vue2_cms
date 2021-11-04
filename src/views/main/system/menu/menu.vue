@@ -2,6 +2,9 @@
     <div class="menu">
         <el-card class="card-mt10">
             <base-table :dataList="dataList" v-bind="tableOptions">
+                <template slot="tableHandler">
+                    <el-button type="primary" size="small" @click="menuAddData">新增</el-button>
+                </template>
                 <template slot="createTime" slot-scope="scope">
                     <span>{{ $utils.formatUtcTime(scope.row.createAt) }}</span>
                 </template>
@@ -10,17 +13,20 @@
                 </template>
             </base-table>
         </el-card>
+        <add-dialog :dialogVisible.sync="menuDialogVisible"></add-dialog>
     </div>
 </template>
 
 <script>
 import BaseTable from "@/components/baseTable"
 import tableOptions from "./config/table"
+import AddDialog from "./components/addDialog"
 import { getMenuList } from "@/api/system/menu/menu"
 export default {
     name: "systemMenu",
     components: {
-        BaseTable
+        BaseTable,
+        AddDialog
     },
     data() {
         return {
@@ -31,7 +37,8 @@ export default {
                 size: 10,
                 totalCount: 0,
                 offset: 0
-            }
+            },
+            menuDialogVisible: false
         }
     },
     created() {
@@ -48,6 +55,9 @@ export default {
                 this.dataList = res.data.list
                 this.pageData.totalCount = res.data.totalCount
             })
+        },
+        menuAddData() {
+            this.menuDialogVisible = true
         },
         // 页码
         handleCurrentChange(currentPage) {

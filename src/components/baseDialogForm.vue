@@ -59,7 +59,6 @@ export default {
                 dialogForm[key] = ""
             }
             this.$emit("resetDialogField", dialogForm)
-            this.$emit("update:userDialog", false)
         },
         // 确定
         confirmData() {

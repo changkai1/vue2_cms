@@ -4,7 +4,7 @@
             @queryList="queryList"
             @resetDialogField="resetDialogField"
             :dialogForm="dialogForm"
-            :dialogVisible.sync="userDialog"
+            :dialogVisible="dialogVisible"
             v-bind="dialogConfig">
             <template v-slot:baseDialog>
                 <el-form-item label="用户名">
@@ -29,7 +29,7 @@ export default {
         BaseDialogForm
     },
     props: {
-        userDialog: {
+        dialogVisible: {
             type: Boolean,
             required: true
         }
@@ -46,15 +46,11 @@ export default {
             }
         }
     },
-    watch: {},
     methods: {
-        dialogVisibleShow() {
-            this.dialogVisible = true
-        },
         // 弹窗关闭清空表单
         resetDialogField(obj) {
             this.dialogForm = obj
-            this.$emit("update:userDialog", false)
+            this.$emit("update:dialogVisible", false)
         },
         queryList() {
             this.$emit("queryList")
