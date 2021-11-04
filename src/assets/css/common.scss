@@ -12,13 +12,11 @@
 .el-table__header th {
     background-color: #f5f7fa !important;
 }
-// .el-table__fixed {
-//     height: calc(100% - 20px) !important;
-// }
-// .el-table__fixed-right {
-//     height: calc(100% - 20px) !important;
-// }
-// .el-table__fixed-right::before,
-// .el-table__fixed::before {
-//     background-color: unset !important;
-// }
+// 弹窗表单样式
+.dialog {
+    .dialog-form {
+        .el-form-item {
+            width: 80%;
+        }
+    }
+}

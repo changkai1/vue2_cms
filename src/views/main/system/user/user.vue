@@ -20,7 +20,7 @@
             <base-table :dataList="dataList" v-bind="tableOptions">
                 <!-- 头部按钮插槽 -->
                 <template slot="tableHandler">
-                    <el-button plain size="small">新增</el-button>
+                    <el-button plain size="small" @click="addData">新增</el-button>
                 </template>
                 <!-- 列表中的插槽 -->
                 <template slot="status" slot-scope="scope">
@@ -57,6 +57,24 @@
                 @queryList="queryList">
             </base-pagination>
         </el-card>
+        <!-- <base-dialog-form
+            @resetDialogField="resetDialogField"
+            :dialogForm="dialogForm"
+            :dialogVisible.sync="dialogVisible"
+            v-bind="dialogConfig">
+            <template v-slot:baseDialog>
+                <el-form-item label="用户名">
+                    <el-input v-model.trim="dialogForm.name"></el-input>
+                </el-form-item>
+                <el-form-item label="真实姓名">
+                    <el-input v-model.trim="dialogForm.realName"></el-input>
+                </el-form-item>
+                <el-form-item label="手机号">
+                    <el-input v-model.trim="dialogForm.phone"></el-input>
+                </el-form-item>
+            </template>
+        </base-dialog-form> -->
+        <user-dialog ref="userDialogRef" :userDialog.sync="userDialog" @queryList="queryList"></user-dialog>
     </div>
 </template>
 
@@ -65,13 +83,15 @@ import BaseSearch from "@/components/baseSearch"
 import BaseTable from "@/components/baseTable"
 import BasePagination from "@/components/basePagination"
 import tableOptions from "./config/userTable"
+import UserDialog from "./components/userDialog"
 import { getUserList } from "@/api/system/user/user"
 export default {
     name: "user",
     components: {
         BaseSearch,
         BaseTable,
-        BasePagination
+        BasePagination,
+        UserDialog
     },
     data() {
         return {
@@ -86,7 +106,8 @@ export default {
                 size: 10,
                 totalCount: 0,
                 offset: 0
-            }
+            },
+            userDialog: false
         }
     },
     created() {
@@ -132,6 +153,11 @@ export default {
             this.pageData.size = 10
             this.pageData.totalCount = 0
             this.pageData.offset = 0
+        },
+        // 新增
+        addData() {
+            // this.$refs.userDialogRef.dialogVisibleShow()
+            this.userDialog = true
         }
     }
 }
