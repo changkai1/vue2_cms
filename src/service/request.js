@@ -40,7 +40,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     // 响应成功的拦截
     (res) => {
-        // console.log("response-res", res)
+        console.log("response-res", res)
         if (res.status === 200) {
             if (res.config.options && res.config.options.showLoading) {
                 loadingInstance.close()

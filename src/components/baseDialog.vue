@@ -2,7 +2,7 @@
     <div class="base-dialog">
         <el-dialog
             :title="title"
-            width="550px"
+            :width="width"
             :visible.sync="dialogVisible"
             append-to-body
             :close-on-click-modal="false"
