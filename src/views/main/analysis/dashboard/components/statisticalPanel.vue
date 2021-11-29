@@ -8,11 +8,11 @@
                 </el-popover>
             </div>
             <div class="content">
-                <base-counter-up></base-counter-up>
+                <base-counter-up :number="panelData.number1" :option="optionCom(panelData.amount)"></base-counter-up>
             </div>
             <div class="footer">
                 <span>{{ panelData.subtitle }}</span>
-                <base-counter-up></base-counter-up>
+                <base-counter-up :number="panelData.number2" :option="optionCom(panelData.amount)"></base-counter-up>
             </div>
         </el-card>
     </div>
@@ -32,7 +32,25 @@ export default {
         }
     },
     data() {
-        return {}
+        return {
+            counterOption1: {
+                decimalPlaces: 0,
+                prefix: ""
+            },
+            counterOption2: {
+                decimalPlaces: 0,
+                prefix: "¥"
+            }
+        }
+    },
+    methods: {
+        optionCom(val) {
+            if (val == "saleroom") {
+                return this.counterOption2
+            } else {
+                return this.counterOption1
+            }
+        }
     }
 }
 </script>
